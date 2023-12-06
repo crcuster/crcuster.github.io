@@ -20,14 +20,12 @@
 
   <main>
     <!-- Your main content goes here -->
-    <style>
+  <style>
       .smooth {
-        transition: color 1s ease-in-out;
-      }
-    </style>
-  
-  <div id="color-demo" class="smooth" style="color: red;" hx-get="#"
-       hx-trigger="click" hx-swap="outerHTML"
+    transition: color 1s ease-in-out;
+  }
+  </style>
+  <div id="color-demo" class="smooth" style="color: red;" hx-get="#"  hx-swap="outerHTML" hx-trigger="click[ctrlKey]"
        hx-target="#color-demo">
        <h1>CSCI 331 HTMX Demo</h1>
   </div>
