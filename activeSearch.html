@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Active Generator</title>
+  <link rel="stylesheet" href="RQGstyles.css">
+  <script src="https://unpkg.com/htmx.org"></script>
+  <script src="https://unpkg.com/htmx.org/dist/ext/client-side-templates.js"></script>
+  <script src="https://unpkg.com/mustache@latest"></script>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="RQGhtmx.html">Random Quote Generator(HTMX)</a></li>
+        <li><a href="RQG.html">Random Quote Generator (JS)</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <h1>Active Search (HTMX)</h1>
+
+  <main>
+  </main>
+
+<div>
+  <input id="searchInput" type="text" placeholder="Search" hx-trigger="keyup changed delay:500ms" hx-post="https://api.edamam.com/search?q={query}&app_id=1d59b396&app_key=b7da8c300567f0076cb7a4b781189e85" hx-target="#itemList" hx-vals="query">
+</div>
+
+<div id="itemList">
+</div>
+
+<script>
+  document.getElementById('searchInput').addEventListener('input', function() {
+    const query = encodeURIComponent(this.value.trim());
+    const itemList = document.getElementById('itemList');
+    itemList.setAttribute('hx-vals', `query=${query}`);
+  });
+</script>
+
+
+    <!-- <h3> 
+      Search Contacts 
+      <span class="htmx-indicator"> 
+        <img src="/img/bars.svg"/> Searching... 
+       </span> 
+    </h3>
+    <input class="form-control" type="search" 
+           name="q" placeholder="Begin Typing To Search Users..." 
+           hx-get="https://api.edamam.com/search?q=pork&app_id=1d59b396&app_key=b7da8c300567f0076cb7a4b781189e85" 
+           hx-trigger="input changed delay:500ms, search" 
+           hx-target="#search-results" 
+           hx-indicator=".htmx-indicator"
+           mustache-template="foo">>
+
+    <template id="foo">
+    <p>{{#hits}} <li> {{recipe.label}}</li> {{/hits}}</p>
+  </template>
+    
+    <table class="table">
+        <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+        </tr>
+        </thead>
+        <tbody id="search-results">
+        </tbody>
+    </table> -->
+
+    </div>
+  </body>
+
+</html>

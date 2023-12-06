@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Random Quote Generator</title>
+  <link rel="stylesheet" href="RQGstyles.css">
+
+</head>
+<body>
+
+  <header>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="RQGhtmx.html">Random Quote Generator(HTMX)</a></li>
+        <li><a href="RQG.html">Random Quote Generator (JS)</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <h1>Random Quote Generation (JavaScript)</h1>
+
+
+  <main>
+    <!-- Your main content goes here -->
+
+    <div class="quote-container">
+      <p class="quote-text">Loading...</p>
+      <p class="quote-author"></p>
+      <button onclick="getRandomQuote()">Get Quote</button>
+    </div>
+
+    <div class="code-container">
+      <h2>JavaScript</h2>
+      <pre>
+        &ltscript&gtquest;
+          function getRandomQuote() {
+            fetch('https://api.quotable.io/random')
+              .then(response => response.json())
+              .then(data => {
+                displayQuote(data);
+              })
+              .catch(error => {
+                console.error('Error fetching data:', error);
+                displayQuoteError();
+              });
+          }
+      
+          function displayQuote(quote) {
+            const quoteText = document.querySelector('.quote-text');
+            const quoteAuthor = document.querySelector('.quote-author');
+      
+            quoteText.textContent = `"${quote.content}"`;
+            quoteAuthor.textContent = `- ${quote.author}`;
+          }
+      
+          function displayQuoteError() {
+            const quoteText = document.querySelector('.quote-text');
+            quoteText.textContent = 'Failed to fetch a quote. Please try again later.';
+          }
+      
+          // Display a quote when the page loads
+          getRandomQuote();
+        &lt/script&gt
+      </pre>
+    </div>
+  </main>
+
+  <script>
+    function getRandomQuote() {
+      fetch('https://api.quotable.io/random')
+        .then(response => response.json())
+        .then(data => {
+          displayQuote(data);
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
+          displayQuoteError();
+        });
+    }
+
+    function displayQuote(quote) {
+      const quoteText = document.querySelector('.quote-text');
+      const quoteAuthor = document.querySelector('.quote-author');
+
+      quoteText.textContent = `"${quote.content}"`;
+      quoteAuthor.textContent = `- ${quote.author}`;
+    }
+
+    function displayQuoteError() {
+      const quoteText = document.querySelector('.quote-text');
+      quoteText.textContent = 'Failed to fetch a quote. Please try again later.';
+    }
+
+    // Display a quote when the page loads
+    getRandomQuote();
+  </script>
+
+</body>
+</html>
