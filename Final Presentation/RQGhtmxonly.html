@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Random Quote Generator</title>
+  <link rel="stylesheet" href="RQGstyles.css">
+  <script src="https://unpkg.com/htmx.org@1.9.9" integrity="sha384-QFjmbokDn2DjBjq+fM+8LUIVrAgqcNW2s0PjAxHETgRn9l4fvX31ZxDxvwQnyMOX" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">Recipe Finder</a></li>
+        <li><a href="#services">Live Polling</a></li>
+        <li><a href="#contact">Random Quote Generator</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Your main content goes here -->
+    <h1>Random Quote Generation (HTMX + JavaScript)</h1>
+  </main>
+
+  <div class="quote-container" hx-get="https://api.quotable.io/random" hx-trigger="click" hx-target="#quote-json">
+    <p class="quote-text">Loading...</p>
+    <p class="quote-author"></p>
+    <button>Get Quote</button>
+  </div>
+
+  <p id="quote-json" style="display: none;"></p> <!-- Hidden container to store JSON response -->
+
+  <!-- <img src="images/JSRQG.JPG"> -->
+
+  <script>
+    document.body.addEventListener('htmx:afterSwap', function(event) {
+      const jsonElement = document.getElementById('quote-json');
+      const jsonData = JSON.parse(jsonElement.textContent);
+
+      const quoteText = document.querySelector('.quote-text');
+      const quoteAuthor = document.querySelector('.quote-author');
+
+      quoteText.textContent = `"${jsonData.content}"`;
+      quoteAuthor.textContent = `- ${jsonData.author}`;
+    });
+  </script>
+
+</body>
+</html>
