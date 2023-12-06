@@ -25,12 +25,10 @@
         transition: color 1s ease-in-out;
       }
     </style>
-  </head>
-  <body>
   
   <div id="color-demo" class="smooth" style="color: red;" hx-get="#"
-       hx-trigger="every 1s" hx-swap="outerHTML"
-       hx-target="#color-demo" hx-indicator="on">
+       hx-trigger="click" hx-swap="outerHTML"
+       hx-target="#color-demo">
        <h1>CSCI 331 HTMX Demo</h1>
   </div>
   
@@ -53,7 +51,7 @@
     setInterval(changeColor, 1000);
   </script>
     <p class="authors">Avery Jacobson - Camille Custer</p>
-  </main>
+
 
   <div class="memes">
     <img src="images/nocap.png">
