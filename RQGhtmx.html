@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Random Quote Generator</title>
+  <link rel="stylesheet" href="RQGstyles.css">
+  <script src="https://unpkg.com/htmx.org"></script>
+  <script src="https://unpkg.com/htmx.org/dist/ext/client-side-templates.js"></script>
+  <script src="https://unpkg.com/mustache@latest"></script>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="RQGhtmx.html">Random Quote Generator(HTMX)</a></li>
+        <li><a href="RQG.html">Random Quote Generator (JS)</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <h1>Random Quote Generation (HTMX)</h1>
+
+  <main>
+    <!-- Your main content goes here -->
+  </main>
+
+
+    <div class="quote-container">
+      <template id="foo">
+        <p>"{{content}}"</p>
+        <p>- {{author}}</p>
+      </template>
+      <p id="content">Waiting....</p>
+
+      <div hx-ext="client-side-templates">
+        <button hx-get="https://api.quotable.io/random"
+                hx-swap="innerHTML"
+                hx-target="#content"
+                mustache-template="foo">
+          Get Quote
+        </button>    
+      </div>
+    </div>
+
+    <div class="code-container">
+      <!-- Your code or content goes here -->
+      <h2>HTMX</h2>
+      <pre>
+        &lttemplate id="foo">
+          &ltp>"{{content}}"&lt/p>
+          &ltp>- {{author}}&lt/p>
+        &lt/template>
+        &ltp id="content">Waiting....&lt/p>
+  
+        &ltdiv hx-ext="client-side-templates">
+          &ltbutton hx-get="https://api.quotable.io/random"
+                  hx-swap="innerHTML"
+                  hx-target="#content"
+                  mustache-template="foo">
+            Get Quote
+          &lt/button> 
+      </pre>
+    </div>
+  </body>
+
+</html>
